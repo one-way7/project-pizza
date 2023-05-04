@@ -1,5 +1,43 @@
-export default function Sort() {
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import classNames from 'classnames';
 
+export default function Sort() {
+    const [sortVisibility, setSortVisibility] = useState(false)
+    const [activeSortId, setActiveSortId] = useState(0)
+    const [selectedSort, setSelectedSort] = useState('popularity')
+
+    const sortingCriteria = ['popularity', 'price', 'alphabetically']
+
+    const handleClick = (i, content) => {
+        setActiveSortId(i)
+        setSelectedSort(content)
+        setSortVisibility(state => !state)
+    }
+
+    const renderItem = () => {
+        const items = sortingCriteria.map((content, i) => {
+            const className = classNames({
+                active: activeSortId === i
+            })
+            
+            return <li
+                key={uuidv4()}
+                className={className}
+                onClick={() => handleClick(i, content)}
+            >{content}</li>;
+        })
+        
+        return (
+            <div className="sort__popup">
+                <ul>
+                    {items}
+                </ul>
+            </div>
+        )
+    }
+
+    const elements = renderItem()
 
     return (
         <div className="sort">
@@ -17,15 +55,11 @@ export default function Sort() {
                     />
                 </svg>
                 <b>Sorting by:</b>
-                <span>popularity</span>
+                <span onClick={() => setSortVisibility((state) => !state)}>
+                    {selectedSort}
+                </span>
             </div>
-            <div className="sort__popup">
-                <ul>
-                    <li className="active">popularity</li>
-                    <li>price</li>
-                    <li>alphabetically</li>
-                </ul>
-            </div>
+            {sortVisibility && elements}
         </div>
-    )
+    );
 }
