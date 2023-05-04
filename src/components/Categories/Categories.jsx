@@ -11,21 +11,21 @@ export default function Categories() {
         {name: 'Spicy pizzas', id: uuidv4()},
         {name: 'Closed pizzas', id: uuidv4()},
     ])
-    const [ activeId, setActive ] = useState(categories[0].id)
+    const [ activeId, setActive ] = useState(0)
 
-    let elements = categories.map(({ name, id }) => {
+    let elements = useMemo(() => categories.map(({ name, id }, i) => {
         let className = classNames({
-            active: activeId === id
+            active: activeId === i
         })
 
         return <li
             className={className}
             key={id}
-            onClick={() => setActive(id)}
+            onClick={() => setActive(i)}
         >
             {name}
         </li>
-    })
+    }), [categories, activeId])
 
     return (
         <div className="categories">

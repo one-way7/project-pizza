@@ -1,25 +1,59 @@
-export default function PizzaBlock() {
+import { useState, useMemo } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import classNames from 'classnames';
+
+export default function PizzaBlock({ imageUrl, title, types, sizes, price,  id}) {
+    const [activeTypeIndex, setActiveTypeIndex] = useState(0)
+    const [activeSizeIndex, setActiveSizeIndex] = useState(0)
+
+    const type = useMemo(() => types.map((item, i) => {
+        let className = classNames({
+            active: activeTypeIndex === i
+        })
+
+        if (item === 0) {
+            return <li
+                className={className}
+                key={uuidv4()}
+                onClick={() => setActiveTypeIndex(i)}
+            >thin</li>
+        } else if (item === 1) {
+            return <li
+                className={className}
+                key={uuidv4()}
+                onClick={() => setActiveTypeIndex(i)}
+            >traditional</li>
+        }
+
+
+    }), [types, activeTypeIndex])
+
+    const size = useMemo(() => sizes.map((item, i) => {
+        let className = classNames({
+            active: activeSizeIndex === i
+        })
+
+        return <li
+            className={className}
+            key={uuidv4()}
+            onClick={() => setActiveSizeIndex(i)}
+        >{item} cm</li>
+    }), [sizes, activeSizeIndex]);
+
     return (
         <div className="pizza-block">
             <img
                 className="pizza-block__image"
-                src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-                alt="Pizza"
+                src={imageUrl}
+                alt={`Pizza ${title}`}
             />
-            <h4 className="pizza-block__title">Cheeseburger pizza</h4>
+            <h4 className="pizza-block__title">{title}</h4>
             <div className="pizza-block__selector">
-                <ul>
-                    <li className="active">thin</li>
-                    <li>traditional</li>
-                </ul>
-                <ul>
-                    <li className="active">26 cm.</li>
-                    <li>30 cm.</li>
-                    <li>40 cm.</li>
-                </ul>
+                <ul>{type}</ul>
+                <ul>{size}</ul>
             </div>
             <div className="pizza-block__bottom">
-                <div className="pizza-block__price">from 300 $</div>
+                <div className="pizza-block__price">from {price} $</div>
                 <div className="button button--outline button--add">
                     <svg
                         width="12"
@@ -38,5 +72,5 @@ export default function PizzaBlock() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
