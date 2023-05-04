@@ -1,9 +1,9 @@
-import Header from "./components/Header/Header";
-import Categories from "./components/Categories/Categories";
-import Sort from "./components/Sort/Sort";
-import PizzaBlock from "./components/PizzaBlock/PizzaBlock";
+import Header from "../Header/Header";
+import Categories from "../Categories/Categories";
+import Sort from "../Sort/Sort";
+import PizzaBlock from "../PizzaBlock/PizzaBlock";
 
-import './scss/app.scss'
+import '../../scss/app.scss'
 
 function App() {
 
@@ -16,7 +16,7 @@ function App() {
             <Categories />
             <Sort />
           </div>
-          <h2 className="content__title">Все пиццы</h2>
+          <h2 className="content__title">All pizzas</h2>
           <div className="content__items">
               <PizzaBlock />
               <PizzaBlock />
