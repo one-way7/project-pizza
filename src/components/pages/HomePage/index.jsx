@@ -19,6 +19,8 @@ const HomePage = () => {
             .catch((err) => {
                 setProcess('error');
             });
+
+        window.scrollTo(0, 0)
     }, []);
 
     const pizzas = useMemo(
@@ -47,14 +49,14 @@ const HomePage = () => {
     };
 
     return (
-        <>
+        <div className="container">
             <div className="content__top">
                 <Categories />
                 <Sort />
             </div>
             <h2 className="content__title">All pizzas</h2>
             <div className="content__items">{setContent()}</div>
-        </>
+        </div>
     );
 };
 

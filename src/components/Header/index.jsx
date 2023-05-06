@@ -14,7 +14,7 @@ export default function Header() {
                     </div>
                 </div>
                 <div className="header__cart">
-                    <Link to="/" className="button button--cart">
+                    <Link to="/cart" className="button button--cart">
                         <span>300 $</span>
                         <div className="button__delimiter"></div>
                         <svg
