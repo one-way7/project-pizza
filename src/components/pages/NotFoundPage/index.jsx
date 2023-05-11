@@ -1,4 +1,4 @@
-import NotFound from '../../NotFound';
+import NotFound from '../../notFound/NotFound';
 const NotFoundPage = () => {
     return (
         <div className="container">

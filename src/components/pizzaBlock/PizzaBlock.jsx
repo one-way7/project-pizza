@@ -1,44 +1,54 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import classNames from 'classnames';
 
-export default function PizzaBlock({ imageUrl, title, types, sizes, price,  id}) {
-    const [activeTypeIndex, setActiveTypeIndex] = useState(0)
-    const [activeSizeIndex, setActiveSizeIndex] = useState(0)
-
-    const type = useMemo(() => types.map((item, i) => {
+export default function PizzaBlock({ imageUrl, title, types, sizes, price }) {
+    const [activeTypeIndex, setActiveTypeIndex] = useState(0);
+    const [activeSizeIndex, setActiveSizeIndex] = useState(0);
+    console.log(title, types, sizes, price);
+    const type = types.map((item, i) => {
         let className = classNames({
-            active: activeTypeIndex === i
-        })
+            active: activeTypeIndex === i,
+        });
 
         if (item === 0) {
-            return <li
-                className={className}
-                key={uuidv4()}
-                onClick={() => setActiveTypeIndex(i)}
-            >thin</li>
+            return (
+                <li
+                    className={className}
+                    key={uuidv4()}
+                    onClick={() => setActiveTypeIndex(i)}
+                >
+                    thin
+                </li>
+            );
         } else if (item === 1) {
-            return <li
+            return (
+                <li
+                    className={className}
+                    key={uuidv4()}
+                    onClick={() => setActiveTypeIndex(i)}
+                >
+                    traditional
+                </li>
+            );
+        }
+    });
+
+    const size = sizes.map((item, i) => {
+        let className = classNames({
+            active: activeSizeIndex === i,
+        });
+
+        return (
+            <li
                 className={className}
                 key={uuidv4()}
-                onClick={() => setActiveTypeIndex(i)}
-            >traditional</li>
-        }
-
-
-    }), [types, activeTypeIndex])
-
-    const size = useMemo(() => sizes.map((item, i) => {
-        let className = classNames({
-            active: activeSizeIndex === i
-        })
-
-        return <li
-            className={className}
-            key={uuidv4()}
-            onClick={() => setActiveSizeIndex(i)}
-        >{item} cm</li>
-    }), [sizes, activeSizeIndex]);
+                onClick={() => setActiveSizeIndex(i)}
+            >
+                {item} cm
+            </li>
+        );
+    });
 
     return (
         <div className="pizza-block-wrapper">

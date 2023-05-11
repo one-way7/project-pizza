@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Header from '../Header';
+import Header from '../header/Header';
 import HomePage from '../pages/HomePage';
 import Cart from '../pages/CartPage';
 import NotFoundPage from '../pages/NotFoundPage';
@@ -8,8 +8,6 @@ import NotFoundPage from '../pages/NotFoundPage';
 import '../../scss/app.scss';
 
 function App() {
-
-
     return (
         <Router>
             <div className="wrapper">

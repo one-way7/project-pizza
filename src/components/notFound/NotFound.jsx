@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import styles from './NotFound.module.scss'
 const NotFound = () => {
     return (
@@ -7,7 +9,7 @@ const NotFound = () => {
                 <br />
                 <span>😕</span>
                 <div className={styles.underline}>
-                    <a href='#'>go home</a>
+                    <Link to='/'>go home</Link>
                 </div>
             </h1>
         </div>

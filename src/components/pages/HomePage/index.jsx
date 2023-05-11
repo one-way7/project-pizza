@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import Categories from '../../Categories';
-import Sort from '../../Sort';
-import PizzaBlock from '../../PizzaBlock';
-import Skeleton from '../../PizzaBlock/Skeleton';
-import ErrorMessage from '../../ErrorMessage';
+import Categories from '../../categories/Categories';
+import Sort from '../../sort/Sort';
+import PizzaBlock from '../../pizzaBlock/PizzaBlock';
+import Skeleton from '../../pizzaBlock/Skeleton';
+import ErrorMessage from '../../errorMessage/ErrorMessage';
 
 const HomePage = () => {
     const [pizzasData, setPizzasData] = useState([]);
